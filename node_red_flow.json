@@ -1,0 +1,14 @@
+[
+  {"id":"tab1","type":"tab","label":"IoT Monitor","disabled":false,"info":""},
+  {"id":"broker1","type":"mqtt-broker","name":"MQTT Broker","broker":"127.0.0.1","port":"1883","clientid":"","autoConnect":true,"usetls":false,"protocolVersion":"4","keepalive":"60","cleansession":true,"autoUnsubscribe":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},
+  {"id":"ui_tab1","type":"ui_tab","name":"Machine Monitor","icon":"dashboard","disabled":false,"hidden":false},
+  {"id":"ui_group1","type":"ui_group","name":"Live Readings","tab":"ui_tab1","order":1,"disp":true,"width":"12","collapse":false},
+  {"id":"tempin","type":"mqtt in","z":"tab1","name":"Temperature","topic":"lab/monitor/temperature_c","qos":"0","datatype":"auto","broker":"broker1","nl":false,"rap":true,"rh":0,"inputs":0,"x":150,"y":80,"wires":[["tempgauge"]]},
+  {"id":"tempgauge","type":"ui_gauge","z":"tab1","name":"Temperature","group":"ui_group1","order":1,"width":6,"height":4,"gtype":"gage","title":"Temperature","label":"°C","format":"{{value}}","min":0,"max":60,"colors":["#00b500","#e6e600","#ca3838"],"seg1":"30","seg2":"40","x":390,"y":80,"wires":[]},
+  {"id":"humin","type":"mqtt in","z":"tab1","name":"Humidity","topic":"lab/monitor/humidity_pct","qos":"0","datatype":"auto","broker":"broker1","nl":false,"rap":true,"rh":0,"inputs":0,"x":150,"y":160,"wires":[["humgauge"]]},
+  {"id":"humgauge","type":"ui_gauge","z":"tab1","name":"Humidity","group":"ui_group1","order":2,"width":6,"height":4,"gtype":"gage","title":"Humidity","label":"%","format":"{{value}}","min":0,"max":100,"colors":["#00b500","#e6e600","#ca3838"],"seg1":"60","seg2":"80","x":390,"y":160,"wires":[]},
+  {"id":"curin","type":"mqtt in","z":"tab1","name":"Current","topic":"lab/monitor/current_a","qos":"0","datatype":"auto","broker":"broker1","nl":false,"rap":true,"rh":0,"inputs":0,"x":150,"y":240,"wires":[["curgauge"]]},
+  {"id":"curgauge","type":"ui_gauge","z":"tab1","name":"Current","group":"ui_group1","order":3,"width":6,"height":4,"gtype":"gage","title":"Electrical Current","label":"A","format":"{{value}}","min":0,"max":10,"colors":["#00b500","#e6e600","#ca3838"],"seg1":"5","seg2":"8","x":390,"y":240,"wires":[]},
+  {"id":"statusin","type":"mqtt in","z":"tab1","name":"Status","topic":"lab/monitor/status","qos":"0","datatype":"auto","broker":"broker1","nl":false,"rap":true,"rh":0,"inputs":0,"x":140,"y":320,"wires":[["statustext"]]},
+  {"id":"statustext","type":"ui_text","z":"tab1","group":"ui_group1","order":4,"width":12,"height":1,"name":"Status","label":"System status","format":"<b>{{msg.payload}}</b>","layout":"row-spread","x":380,"y":320,"wires":[]}
+]
